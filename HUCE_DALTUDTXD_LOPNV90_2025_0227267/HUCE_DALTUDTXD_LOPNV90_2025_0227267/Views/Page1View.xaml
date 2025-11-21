@@ -245,7 +245,5 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
-
-        
     </Grid>
 </UserControl>
