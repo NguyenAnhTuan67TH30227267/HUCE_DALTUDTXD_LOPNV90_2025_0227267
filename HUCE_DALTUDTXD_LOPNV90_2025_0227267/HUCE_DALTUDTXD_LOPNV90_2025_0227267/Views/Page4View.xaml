@@ -134,16 +134,6 @@
                           DisplayMemberPath="TenMong"
                           SelectedItem="{Binding SelectedMong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource ModernComboBox}"/>
-
-                <!-- Nút lấy dữ liệu từ ETABS -->
-                <Button Content="📊 LẤY DỮ LIỆU TỪ ETABS"
-                        Command="{Binding ImportEtabsDataCommand}"
-                        Style="{StaticResource PrimaryButton}"
-                        Background="{StaticResource color9Brush}"
-                        Width="200"
-                        HorizontalAlignment="Center"
-                        Margin="0,15,0,0"/>
-
                 <!-- Moment (M) Input -->
                 <TextBlock Text="Moment (M):"
                            FontWeight="SemiBold"
