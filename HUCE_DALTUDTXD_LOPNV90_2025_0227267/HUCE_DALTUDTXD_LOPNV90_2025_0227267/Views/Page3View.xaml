@@ -78,7 +78,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="15">
+    <Grid Margin="15" Background="#333366">
         <StackPanel>
 
             <!-- Chọn nội lực -->

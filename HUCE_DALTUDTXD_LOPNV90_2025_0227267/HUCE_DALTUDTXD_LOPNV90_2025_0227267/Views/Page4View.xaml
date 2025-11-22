@@ -96,7 +96,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Background="#333366">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="500"/>

@@ -11,8 +11,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 {
     public class Page2ViewModel : ViewModelBase
     {
-        private readonly MainViewModel _mainViewModel;
-        // --- D? li?u công trình ---
+        // --- Du lieu công trình ---
         private ConstructionEntry _newConstructionEntry = new ConstructionEntry();
 
         // Danh sách c?p ?? bê tông

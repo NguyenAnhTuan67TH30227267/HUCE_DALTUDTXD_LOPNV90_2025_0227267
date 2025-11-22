@@ -96,7 +96,7 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#333366">
         <StackPanel Margin="20">
 
             <!-- Title -->

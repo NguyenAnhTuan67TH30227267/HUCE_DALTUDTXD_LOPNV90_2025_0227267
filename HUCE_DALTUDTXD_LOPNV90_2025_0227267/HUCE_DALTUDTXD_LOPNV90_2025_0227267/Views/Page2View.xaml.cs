@@ -24,5 +24,10 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.Views
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
