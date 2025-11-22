@@ -9,7 +9,7 @@
 
     <UserControl.Resources>
         <SolidColorBrush x:Key="primaryBackColor1Brush" Color="#1E1E1E"/>
-        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#2F2F2F"/>
+        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#333366"/>
         <SolidColorBrush x:Key="panelColorBrush" Color="#252525"/>
         <SolidColorBrush x:Key="winBorderColor1Brush" Color="#3C3C3C"/>
         <SolidColorBrush x:Key="color1Brush" Color="#5C9EFF"/>
@@ -119,7 +119,7 @@
                                        Margin="0,0,5,0"/>
                             <TextBox Text="{Binding ChieuRongMong, StringFormat=N2}"
                                      Style="{StaticResource ModernTextBox}"
-                                     Width="100"/>
+                                     Width="100" TextChanged="TextBox_TextChanged"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
@@ -307,7 +307,7 @@
             </Border>
 
             <!-- Kết luận tổng kết -->
-            <Border Background="{StaticResource panelColorBrush}"
+            <Border Background="{StaticResource secondaryBackColor1Brush}"
                     BorderBrush="{StaticResource winBorderColor1Brush}"
                     BorderThickness="2"
                     CornerRadius="8"

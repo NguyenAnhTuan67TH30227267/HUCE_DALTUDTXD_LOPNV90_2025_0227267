@@ -9,8 +9,8 @@
 
     <UserControl.Resources>
         <SolidColorBrush x:Key="primaryBackColor1Brush" Color="#1E1E1E"/>
-        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#2F2F2F"/>
-        <SolidColorBrush x:Key="panelColorBrush" Color="#252525"/>
+        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#333366"/>
+        <SolidColorBrush x:Key="panelColorBrush" Color="#333366"/>
         <SolidColorBrush x:Key="winBorderColor1Brush" Color="#3C3C3C"/>
         <SolidColorBrush x:Key="color1Brush" Color="#5C9EFF"/>
         <SolidColorBrush x:Key="color3Brush" Color="#62E8E2"/>
@@ -23,7 +23,7 @@
         <Style x:Key="ModernTextBox" TargetType="TextBox">
             <Setter Property="Margin" Value="2"/>
             <Setter Property="Padding" Value="8,4,8,4"/>
-            <Setter Property="Width" Value="160"/>
+            <Setter Property="Width" Value="120"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="Background" Value="{StaticResource panelColorBrush}"/>
             <Setter Property="BorderBrush" Value="{StaticResource winBorderColor1Brush}"/>
@@ -38,9 +38,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6">
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6">
                             <ScrollViewer Margin="2" x:Name="PART_ContentHost"/>
                         </Border>
                     </ControlTemplate>
