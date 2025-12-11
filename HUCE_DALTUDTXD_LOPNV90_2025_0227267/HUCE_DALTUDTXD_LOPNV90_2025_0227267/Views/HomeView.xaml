@@ -12,11 +12,11 @@
         <Border CornerRadius="15" BorderThickness="1" Opacity="1">
             <Border.BorderBrush>
 
-                <SolidColorBrush Color="#333366"/>
+                <SolidColorBrush Color="#2D2D2D"/>
             </Border.BorderBrush>
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#333366" Offset="0"/>
+                    <GradientStop Color="#1E1E1E" Offset="0"/>
                     <GradientStop Color="#121212" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>

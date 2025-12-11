@@ -10,8 +10,8 @@
     <UserControl.Resources>
         <!-- Color Resources -->
         <SolidColorBrush x:Key="primaryBackColor1Brush" Color="#1E1E1E"/>
-        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#333366"/>
-        <SolidColorBrush x:Key="panelColorBrush" Color="#333366"/>
+        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#2F2F2F"/>
+        <SolidColorBrush x:Key="panelColorBrush" Color="#252525"/>
         <SolidColorBrush x:Key="winBorderColor1Brush" Color="#3C3C3C"/>
         <SolidColorBrush x:Key="color1Brush" Color="#5C9EFF"/>
         <SolidColorBrush x:Key="color3Brush" Color="#62E8E2"/>
@@ -114,7 +114,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="#333366" >
+    <Grid Background="Transparent" >
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>

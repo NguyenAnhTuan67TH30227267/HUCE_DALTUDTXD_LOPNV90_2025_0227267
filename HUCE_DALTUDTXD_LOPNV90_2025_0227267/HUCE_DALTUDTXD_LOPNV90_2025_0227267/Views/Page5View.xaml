@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <!-- Color Resources -->
         <SolidColorBrush x:Key="primaryBackColor1Brush" Color="#1E1E1E"/>
-        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#333366"/>
+        <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#2F2F2F"/>
         <SolidColorBrush x:Key="panelColorBrush" Color="#252525"/>
         <SolidColorBrush x:Key="winBorderColor1Brush" Color="#3C3C3C"/>
         <SolidColorBrush x:Key="color1Brush" Color="#5C9EFF"/>
@@ -96,7 +96,7 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#333366">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Background="Transparent">
         <StackPanel Margin="20">
 
             <!-- Title -->

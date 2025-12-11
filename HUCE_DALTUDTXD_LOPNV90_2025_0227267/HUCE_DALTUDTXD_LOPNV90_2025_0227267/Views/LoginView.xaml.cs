@@ -38,7 +38,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.Views
             string password = txtPassword.Password;
 
             // Kiểm tra tài khoản và mật khẩu
-            if (username == "admin" && password == "123456")
+            if (username == "admin" && password == "123")
             {
                 // Nếu đăng nhập thành công, mở MainView và đóng LoginView
                 MainView mainView = new MainView();

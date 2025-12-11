@@ -60,7 +60,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowCal1ViewCommand}" >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="HouseFloodWater" Style="{StaticResource menuButtonIcon}"/>
@@ -69,7 +69,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowCal2ViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Ruler" Style="{StaticResource menuButtonIcon}"/>
@@ -79,7 +79,7 @@
 
                     
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color4}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowCal4ViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ArrowAltCircleDown" Style="{StaticResource menuButtonIcon}"/>
@@ -88,7 +88,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color6}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowCal5ViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Calculator" Style="{StaticResource menuButtonIcon}"/>
@@ -98,7 +98,7 @@
 
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}"
+                                 Tag="{StaticResource color1}"
                                  Command="{Binding ShowCal3ViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="HouseFloodWater" Style="{StaticResource menuButtonIcon}"/>
