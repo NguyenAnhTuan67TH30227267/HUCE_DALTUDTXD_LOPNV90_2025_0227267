@@ -1,5 +1,12 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿# Visual Studio cache
+.vs/
+*.suo
+*.cache
+*.pdb
+*.exe
 
-/HUCE_DALTUDTXD_LOPNV90_2025_0227267/HUCE_DALTUDTXD_LOPNV90_2025_0227267.sln
+# Build output
+bin/
+obj/
+Debug/
+Release/
