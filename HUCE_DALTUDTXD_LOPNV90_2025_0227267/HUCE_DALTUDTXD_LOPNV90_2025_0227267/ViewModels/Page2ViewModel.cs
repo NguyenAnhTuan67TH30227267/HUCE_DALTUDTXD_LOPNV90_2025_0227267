@@ -169,15 +169,15 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
         // Danh sách cấp độ bê tông
         public List<string> DanhSachCapDoBeTong { get; } = new List<string>
-    {
-        "B12.5", "B15", "B20", "B25", "B30", "B35", "B40"
-    };
+        {
+            "B12.5", "B15", "B20", "B25", "B30", "B35", "B40"
+        };
 
         // Danh sách loại thép
         public List<string> DanhSachLoaiThep { get; } = new List<string>
-    {
-        "CB240-T", "CB300-V", "CB400-V", "CB500-V"
-    };
+        {
+            "CB240-T", "CB300-V", "CB400-V", "CB500-V"
+        };
 
         // SCALE cho Canvas
         private const double SCALE = 50;
@@ -379,7 +379,6 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
             if (!double.TryParse(value.ToString(), out double h))
                 return 0;
-
             double canvasHeight = 210;
             double targetCenterY = canvasHeight - canvasHeight / 3;
 
