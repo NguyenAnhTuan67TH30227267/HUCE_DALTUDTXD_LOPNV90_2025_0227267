@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:HUCE_DALTUDTXD_LOPNV90_2025_0227267.Views"
              mc:Ignorable="d"
-             d:DesignWidth="800" d:DesignHeight="500"
+             d:DesignWidth="800" d:DesignHeight="600"
             >
 
     <UserControl.Resources>
@@ -62,7 +62,37 @@
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-
+        <Style x:Key="ModernDataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource secondaryBackColor1Brush}"/>
+            <Setter Property="Foreground" Value="{StaticResource titleColor1Brush}"/>
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowBackground" Value="{StaticResource panelColorBrush}"/>
+            <Setter Property="AlternatingRowBackground" Value="#2A2A2A"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#333"/>
+                        <Setter Property="Foreground" Value="{StaticResource color3Brush}"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="10,6"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="#444"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!-- Style cho Button chung -->
         <Style x:Key="PrimaryButton" TargetType="Button">
             <Setter Property="Height" Value="36"/>
@@ -96,16 +126,16 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="Transparent">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="550"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Column="1" Grid.Row="1"
@@ -113,7 +143,7 @@
                 BorderBrush="{StaticResource winBorderColor1Brush}"
                 BorderThickness="1"
                 CornerRadius="8"
-                Padding="20">
+                Padding="10">
             <StackPanel>
 
                 <!-- Tiêu đề -->
@@ -123,50 +153,62 @@
                            Foreground="{StaticResource color3Brush}"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,15"/>
-
-                <!-- Chọn Tên móng -->
-                <TextBlock Text="Tên móng:"
+                <WrapPanel>
+                    <!-- Chọn Tên móng -->
+                    <TextBlock Text="Tên móng:"
                            FontWeight="SemiBold"
                            Foreground="{StaticResource color9Brush}"
-                           FontSize="13"
-                           Margin="5,5,0,0"/>
-                <ComboBox ItemsSource="{Binding DanhSachMong}"
+                           FontSize="15"
+                           Margin="10,10"/>
+                    <ComboBox ItemsSource="{Binding DanhSachMong}" Width="350"
                           DisplayMemberPath="TenMong"
                           SelectedItem="{Binding SelectedMong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource ModernComboBox}"/>
-                <!-- Moment (M) Input -->
-                <TextBlock Text="Moment (M):"
+                </WrapPanel>
+                <!-- Nút lấy dữ liệu từ ETABS -->
+                <Button Content="📊 LẤY DỮ LIỆU TỪ ETABS"
+                        Command="{Binding ImportEtabsDataCommand}"
+                        Style="{StaticResource PrimaryButton}"
+                        Background="{StaticResource color9Brush}"
+                        Width="200"
+                        HorizontalAlignment="Center"
+                        Margin="10,10"/>
+                <WrapPanel>
+                    <!-- Moment (M) Input -->
+                    <TextBlock Text="Moment (M):"
                            FontWeight="SemiBold"
                            Foreground="{StaticResource color9Brush}"
-                           FontSize="13"
-                           Margin="5,15,0,0"/>
-                <TextBox x:Name="MomentInput"
+                           FontSize="15"
+                           Margin="10,10"/>
+                    <TextBox x:Name="MomentInput"
                          Text="{Binding ForceInput.Moment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N2}}"
                          Style="{StaticResource ModernTextBox}"
-                         Width="460"/>
-
-                <!-- Axial Force (N) Input -->
-                <TextBlock Text="Lực Dọc (N):"
+                         Width="350"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <!-- Axial Force (N) Input -->
+                    <TextBlock Text="Lực Dọc (N):"
                            FontWeight="SemiBold"
                            Foreground="{StaticResource color9Brush}"
-                           FontSize="13"
-                           Margin="5,15,0,0"/>
-                <TextBox x:Name="AxialForceInput"
+                           FontSize="15"
+                           Margin="10,10"/>
+                    <TextBox x:Name="AxialForceInput"
                          Text="{Binding ForceInput.AxialForce, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N2}}"
                          Style="{StaticResource ModernTextBox}"
-                         Width="460"/>
-
-                <!-- Shear Force (Q) Input -->
-                <TextBlock Text="Lực Cắt (Q):"
+                         Width="350"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <!-- Shear Force (Q) Input -->
+                    <TextBlock Text="Lực Cắt (Q):"
                            FontWeight="SemiBold"
                            Foreground="{StaticResource color9Brush}"
-                           FontSize="13"
-                           Margin="5,15,0,0"/>
-                <TextBox x:Name="ShearForceInput"
+                           FontSize="15"
+                           Margin="10,10"/>
+                    <TextBox x:Name="ShearForceInput"
                          Text="{Binding ForceInput.ShearForce, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N2}}"
                          Style="{StaticResource ModernTextBox}"
-                         Width="460"/>
-
+                         Width="350"/>
+                </WrapPanel>
                 <!-- Nút Xác nhận -->
                 <Button Content="XÁC NHẬN"
                         Command="{Binding SaveCommand}"
@@ -174,8 +216,26 @@
                         Background="#4CAF50"
                         Width="140"
                         HorizontalAlignment="Center"
-                        Margin="0,20,0,0"/>
+                        Margin="10,10"/>
             </StackPanel>
         </Border>
+        <DataGrid ItemsSource="{Binding ForceInputList}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True" Style="{StaticResource ModernDataGrid}"
+                  Margin="0,10,0,0" Grid.Row="2"                   
+                  Height="200" Grid.ColumnSpan="3" FontSize="15"
+                  Background="{StaticResource panelColorBrush}"
+                  BorderBrush="{StaticResource winBorderColor1Brush}"
+                  GridLinesVisibility="Horizontal"
+                  HorizontalGridLinesBrush="{StaticResource winBorderColor1Brush}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tên móng" Binding="{Binding Mong.TenMong}" Width="*"/>
+                <DataGridTextColumn Header="Chiều rộng (m)" Binding="{Binding Mong.ChieuRongMong, StringFormat={}{0:N2}}" Width="*"/>
+                <DataGridTextColumn Header="Chiều sâu (m)" Binding="{Binding Mong.ChieuSauChonMong, StringFormat={}{0:N2}}" Width="*"/>
+                <DataGridTextColumn Header="Moment (M)" Binding="{Binding Moment, StringFormat={}{0:N2}}" Width="*"/>
+                <DataGridTextColumn Header="Lực Dọc (N)" Binding="{Binding AxialForce, StringFormat={}{0:N2}}" Width="*"/>
+                <DataGridTextColumn Header="Lực Cắt (Q)" Binding="{Binding ShearForce, StringFormat={}{0:N2}}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
