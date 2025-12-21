@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\models\\useraccountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:models\\useraccountmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\viewmodels\\page2viewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:viewmodels\\page2viewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\models\\concreteproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:models\\concreteproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\models\\constructionentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:models\\constructionentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\models\\steelproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:models\\steelproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\models\\foundationentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:models\\foundationentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\models\\concreteproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:models\\concreteproperties.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,54 +62,67 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FoundationEntry.cs",
+              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\FoundationEntry.cs",
+              "RelativeDocumentMoniker": "Models\\FoundationEntry.cs",
+              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\FoundationEntry.cs",
+              "RelativeToolTip": "Models\\FoundationEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T07:07:17.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserModel.cs",
-              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\UserModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserModel.cs",
-              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\UserModel.cs",
-              "RelativeToolTip": "Models\\UserModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
+              "Title": "ConstructionEntry.cs",
+              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\ConstructionEntry.cs",
+              "RelativeDocumentMoniker": "Models\\ConstructionEntry.cs",
+              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\ConstructionEntry.cs",
+              "RelativeToolTip": "Models\\ConstructionEntry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T15:30:44.518Z",
+              "WhenOpened": "2025-12-15T07:07:11.934Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserAccountModel.cs",
-              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\UserAccountModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserAccountModel.cs",
-              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\UserAccountModel.cs",
-              "RelativeToolTip": "Models\\UserAccountModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T15:27:36.816Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ConcreteProperties.cs",
               "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\ConcreteProperties.cs",
               "RelativeDocumentMoniker": "Models\\ConcreteProperties.cs",
               "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\ConcreteProperties.cs",
               "RelativeToolTip": "Models\\ConcreteProperties.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABrAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T15:26:29.125Z",
+              "WhenOpened": "2025-12-15T07:07:06.001Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "Page2ViewModel.cs",
+              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\ViewModels\\Page2ViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\Page2ViewModel.cs",
+              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\ViewModels\\Page2ViewModel.cs",
+              "RelativeToolTip": "ViewModels\\Page2ViewModel.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwPIAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T05:29:03.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "SteelProperties.cs",
               "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\SteelProperties.cs",
               "RelativeDocumentMoniker": "Models\\SteelProperties.cs",
               "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Models\\SteelProperties.cs",
               "RelativeToolTip": "Models\\SteelProperties.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T15:26:02.851Z",
+              "WhenOpened": "2025-12-15T07:07:21.776Z",
               "EditorCaption": ""
             }
           ]
