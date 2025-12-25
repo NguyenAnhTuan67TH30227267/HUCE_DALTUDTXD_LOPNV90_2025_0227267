@@ -165,5 +165,45 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 UpdateForceInputValues(new ForceInputEntry());
             }
         }
+        // Trong Page4ViewModel.cs
+
+        private void SaveData()
+        {
+            if (ForceInput.Mong == null)
+            {
+                MessageBox.Show("Vui lòng chọn móng!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // 1. Tìm và CẬP NHẬT entry đã tồn tại trong danh sách hiển thị
+            var existingEntry = ForceInputList.FirstOrDefault(e => e.Mong.TenMong == ForceInput.Mong.TenMong);
+
+            if (existingEntry != null)
+            {
+                // Ghi lại chỉ mục (index) của đối tượng trong danh sách
+                int index = ForceInputList.IndexOf(existingEntry);
+
+                // 2. GHI ĐÈ GIÁ TRỊ NỘI LỰC
+                existingEntry.Moment = ForceInput.Moment;
+                existingEntry.AxialForce = ForceInput.AxialForce;
+                existingEntry.ShearForce = ForceInput.ShearForce;
+
+                // 3. ÉP UI CẬP NHẬT TỨC THÌ (REMOVE/RE-ADD TRICK)
+                // Dòng này buộc DataGrid phải làm mới
+                // sự kiện Remove và Add của ObservableCollection.
+                ForceInputList.RemoveAt(index);
+                ForceInputList.Insert(index, existingEntry);
+
+                MessageBox.Show($"Đã GHI ĐÈ nội lực thành công cho móng: {existingEntry.Mong.TenMong}\n" +
+                                $"M = {existingEntry.Moment:N2}, N = {existingEntry.AxialForce:N2}, Q = {existingEntry.ShearForce:N2}",
+                                "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Giữ nguyên giá trị đang nhập
+            }
+            else
+            {
+                MessageBox.Show("Lỗi: Không tìm thấy móng trong danh sách để cập nhật.", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
