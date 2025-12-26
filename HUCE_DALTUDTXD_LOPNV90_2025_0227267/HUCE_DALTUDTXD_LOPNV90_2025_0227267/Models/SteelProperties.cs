@@ -6,11 +6,19 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.Models
 {
     public class SteelProperties
     {
+<<<<<<< HEAD
         public string Grade { get; set; }  // CB240-T, CB300-V, etc.
         public double Rs { get; set; }     // MPa
         public double Rsc { get; set; }    // MPa
         public double Rsw { get; set; }    // MPa
         public double E { get; set; }      // MPa
+=======
+        public string Grade { get; set; } // CB240-T, CB300-V,etc.
+        public double Rs { get; set; } // MPa
+        public double Rsc { get; set; } // MPa
+        public double Rsw { get; set; } // MPa
+        public double E { get; set; } // MPa
+>>>>>>> Dinh-Minh-Phong/Feature
 
         private static readonly List<SteelProperties> _steelDatabase = new List<SteelProperties>
         {
@@ -19,7 +27,10 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.Models
             new SteelProperties { Grade = "CB400-V", Rs = 350, Rsc = 350, Rsw = 280, E = 200000 },
             new SteelProperties { Grade = "CB500-V", Rs = 435, Rsc = 400, Rsw = 300, E = 200000 }
         };
+<<<<<<< HEAD
 
+=======
+>>>>>>> Dinh-Minh-Phong/Feature
         // Hệ số chuyển đổi từ MPa sang T/m²
         private const double MPA_TO_TM2 = 102; // 1 MPa = 102 T/m²
 
