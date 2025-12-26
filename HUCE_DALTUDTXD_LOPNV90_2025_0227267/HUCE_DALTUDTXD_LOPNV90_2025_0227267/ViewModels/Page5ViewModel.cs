@@ -86,5 +86,69 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 }
             }
         }
+        public double P0
+        {
+            get => _p0;
+            set
+            {
+                if (_p0 != value)
+                {
+                    _p0 = value;
+                    OnPropertyChanged(nameof(P0));
+                }
+            }
+        }
+
+        public double P0max
+        {
+            get => _p0max;
+            set
+            {
+                if (_p0max != value)
+                {
+                    _p0max = value;
+                    OnPropertyChanged(nameof(P0max));
+                }
+            }
+        }
+
+        public double P0min
+        {
+            get => _p0min;
+            set
+            {
+                if (_p0min != value)
+                {
+                    _p0min = value;
+                    OnPropertyChanged(nameof(P0min));
+                }
+            }
+        }
+
+        public double PDamThung
+        {
+            get => _pDamThung;
+            set
+            {
+                if (_pDamThung != value)
+                {
+                    _pDamThung = value;
+                    OnPropertyChanged(nameof(PDamThung));
+                }
+            }
+        }
+
+        public double PChongDamThung
+        {
+            get => _pChongDamThung;
+            set
+            {
+                if (_pChongDamThung != value)
+                {
+                    _pChongDamThung = value;
+                    OnPropertyChanged(nameof(PChongDamThung));
+                }
+            }
+        }
     }
 }
