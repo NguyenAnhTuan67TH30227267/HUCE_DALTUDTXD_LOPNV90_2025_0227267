@@ -1,4 +1,4 @@
-using HUCE_DALTUDTXD_LOPNV90_2025_0227267.Models;
+﻿using HUCE_DALTUDTXD_LOPNV90_2025_0227267.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -149,6 +149,106 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                     OnPropertyChanged(nameof(PChongDamThung));
                 }
             }
+        }
+        public ForceInputEntry SelectedForceInput
+        {
+            get => _selectedForceInput;
+            set
+            {
+                if (_selectedForceInput != value)
+                {
+                    _selectedForceInput = value;
+                    OnPropertyChanged(nameof(SelectedForceInput));
+                    if (value?.Mong != null)
+                    {
+                        ChieuRongMong = value.Mong.ChieuRongMong;
+                        ChieuSauChonMong = value.Mong.ChieuSauChonMong;
+                    }
+                    CalculateValues();
+                }
+            }
+        }
+
+        public ObservableCollection<ForceInputEntry> ForceInputList => _mainViewModel.Page4ViewModel.ForceInputList;
+
+        public Page5ViewModel(MainViewModel mainViewModel)
+        {
+            _mainViewModel = mainViewModel;
+            // Set default values
+            ChieuRongMong = 1.0;
+            ChieuSauChonMong = 1.0;
+        }
+        private void CalculateValues()
+        {
+            try
+            {
+                if (SelectedForceInput?.Mong == null || ChieuRongMong <= 0 || ChieuSauChonMong <= 0)
+                {
+                    ClearValues();
+                    return;
+                }
+
+                // Các tính toán (giữ nguyên phần còn lại)
+                double N = SelectedForceInput.AxialForce;
+                double M = SelectedForceInput.Moment;
+                double b = ChieuRongMong;
+                double h = ChieuSauChonMong;
+                double bt = SelectedForceInput.Mong.BeDayTuong;
+                double hd = SelectedForceInput.Mong.ChieuCaoDai;
+                double bv = SelectedForceInput.Mong.ChieuDayLopBaoVe / 1000.0;
+
+                double rbt = ConcreteProperties.GetRbtInTM2(SelectedForceInput.Mong.CapDoBeTong);
+
+                Ptb = N / (1.15 * b) + 2 * h;
+                Pmax = N / (1.15 * b) + 2 * h + 6 * M / (1.15 * b * b);
+                Pmin = N / (1.15 * b) + 2 * h - 6 * M / (1.15 * b * b);
+
+                P0 = N / (b);
+                P0max = N / (b) + 6 * M / (b * b);
+                P0min = N / (b) - 6 * M / (b * b);
+
+                double bHieuDung = b - bt - 2 * (hd - bv);
+                PDamThung = (P0min + (P0max - P0min) * (b - 0.5 * bHieuDung) / b + P0max) / 2 * (0.5 * bHieuDung);
+                PChongDamThung = (hd - bv) * rbt;
+
+                Ptb = Math.Round(Ptb, 2);
+                Pmax = Math.Round(Pmax, 2);
+                Pmin = Math.Round(Pmin, 2);
+                P0 = Math.Round(P0, 2);
+                P0max = Math.Round(P0max, 2);
+                P0min = Math.Round(P0min, 2);
+                PDamThung = Math.Round(PDamThung, 2);
+                PChongDamThung = Math.Round(PChongDamThung, 2);
+
+                if (Pmin < 0)
+                {
+                    MessageBox.Show("Cảnh báo: Pmin < 0, có thể xảy ra hiện tượng nhổ móng!",
+                        "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+                if (PDamThung > PChongDamThung)
+                {
+                    MessageBox.Show("Cảnh báo: PDamThung > PChongDamThung, có thể xảy ra hiện tượng đâm thủng!",
+                        "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                ClearValues();
+                MessageBox.Show($"Lỗi khi tính toán: {ex.Message}",
+                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void ClearValues()
+        {
+            Ptb = 0;
+            Pmax = 0;
+            Pmin = 0;
+            P0 = 0;
+            P0max = 0;
+            P0min = 0;
+            PDamThung = 0;
+            PChongDamThung = 0;
         }
     }
 }
