@@ -181,7 +181,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
         // SCALE cho Canvas
         private const double SCALE = 50;
-        private const double GROUND_LEVEL_Y = 125; // Mặt đất tự nhiên ở 1/2 H Canvas (250/2)
+        private const double GROUND_LEVEL_Y = 50; // Mặt đất tự nhiên ở 1/2 H Canvas (250/2)
 
         // --- Thuộc tính MÓNG ---
         public double MongWidthPx => NewConstructionEntry.ChieuRongMong * SCALE;
