@@ -245,39 +245,41 @@
                     </StackPanel>
                     <StackPanel Grid.Column="3" Grid.RowSpan="3">
                         <TextBlock Text="Mô phỏng sơ bộ"
-               HorizontalAlignment="Center"
-               Margin="0,0,0,5"
-               Foreground="{StaticResource plainTextColor1Brush}"
-               FontWeight="SemiBold"/>
-                        <Canvas Width="300" Height="250" Background="#2A2A2A" >
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,5"
+                                Foreground="{StaticResource plainTextColor1Brush}"
+                                FontWeight="SemiBold"/>
+                        <Viewbox Stretch="UniformToFill">
+                            <Canvas Width="300" Height="250" Background="#2A2A2A" >
 
-                            <Line X1="0" Y1="{Binding GroundLevelLineTopPx}"
-          X2="300" Y2="{Binding GroundLevelLineTopPx}"
-          Stroke="White" StrokeThickness="1" StrokeDashArray="2 2"/>
-                            <TextBlock Text="Mặt đất tự nhiên"
-               Foreground="White"
-               Canvas.Left="5"
-               Canvas.Top="{Binding GroundLevelLineTopPx, Converter={StaticResource TextPositionConverter}}"/>
+                                <Line X1="0" Y1="{Binding GroundLevelLineTopPx}"
+                                    X2="300" Y2="{Binding GroundLevelLineTopPx}"
+                                    Stroke="White" StrokeThickness="1" StrokeDashArray="2 2"/>
+                                <TextBlock Text="Mặt đất tự nhiên"
+                                    Foreground="White"
+                                    Canvas.Left="5"
+                                    Canvas.Top="{Binding GroundLevelLineTopPx, Converter={StaticResource TextPositionConverter}}"/>
 
-                            <Rectangle 
-        Fill="#757575"
-        Stroke="Black"
-        StrokeThickness="1"
-        Width="{Binding WallWidthPx}"
-        Height="{Binding WallHeightPx}"
-        Canvas.Left="{Binding WallWidthPx, Converter={StaticResource CenterConverter}}"
+                                <Rectangle 
+                                    Fill="#757575"
+                                    Stroke="Black"
+                                    StrokeThickness="1"
+                                    Width="{Binding WallWidthPx}"
+                                    Height="{Binding WallHeightPx}"
+                                    Canvas.Left="{Binding WallWidthPx, Converter={StaticResource CenterConverter}}"
         
-        Canvas.Top="{Binding WallTopPx}"/>
+                                    Canvas.Top="{Binding WallTopPx}"/>
 
-                            <Rectangle 
-        Fill="#4DA3FF"
-        Stroke="Black"
-        StrokeThickness="1"
-        Width="{Binding MongWidthPx}"
-        Height="{Binding DaiHeightPx}"
-        Canvas.Left="{Binding MongWidthPx, Converter={StaticResource CenterConverter}}"
-        Canvas.Top="{Binding DaiTopPx}"/>
-                        </Canvas>
+                                <Rectangle 
+                                    Fill="#4DA3FF"
+                                    Stroke="Black"
+                                    StrokeThickness="1"
+                                    Width="{Binding MongWidthPx}"
+                                    Height="{Binding DaiHeightPx}"
+                                    Canvas.Left="{Binding MongWidthPx, Converter={StaticResource CenterConverter}}"
+                                    Canvas.Top="{Binding DaiTopPx}"/>
+                            </Canvas>
+                        </Viewbox>
                     </StackPanel>
                 </Grid>
 
