@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 {
@@ -43,7 +43,6 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
             }
         }
 
-
         public Page3ViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
@@ -53,6 +52,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 _mainViewModel.Page5ViewModel.PropertyChanged += Page5ViewModel_PropertyChanged;
             }
         }
+
         private void Page5ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             // Re-check conditions if Ptb or Pmax from Page5ViewModel changes
@@ -420,5 +420,130 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 KetLuanTongThe = "KHÔNG ĐẠT CÁC ĐIỀU KIỆN. VUI LÒNG CHỌN LẠI KÍCH THƯỚC MÓNG HOẶC ĐIỀU CHỈNH THÔNG SỐ ĐẤT/TẢI TRỌNG.";
             }
         }
+
+        private void ClearCalculatedValues()
+        {
+            TerzaghiP = 0;
+            TerzaghiP120 = 0;
+            ChenhLechKinhTe = 0;
+            KetLuanDieuKien1 = "";
+            KetLuanDieuKien2 = "";
+            KetLuanKinhTe = "";
+            KetLuanTongThe = "";
+            DieuKien1Brush = Brushes.Black;
+            DieuKien2Brush = Brushes.Black;
+            KinhTeBrush = Brushes.Black;
+        }
+
+        public ObservableCollection<ForceInputEntry> ForceInputList => _mainViewModel.Page4ViewModel.ForceInputList;
+
+        private TerzaghiCoefficients GetTerzaghiCoefficients(double phi)
+        {
+            // Tạo bảng Terzaghi đầy đủ
+            var table = new List<TerzaghiCoefficients>
+            {
+                new TerzaghiCoefficients { Phi = 0, Ny = 0, Nq = 1, Nc = 5.14 },
+                new TerzaghiCoefficients { Phi = 5, Ny = 1, Nq = 1.56, Nc = 6.47 },
+                new TerzaghiCoefficients { Phi = 10, Ny = 1, Nq = 2.49, Nc = 8.45 },
+                new TerzaghiCoefficients { Phi = 11, Ny = 1.2, Nq = 2.71, Nc = 8.8 },
+                new TerzaghiCoefficients { Phi = 12, Ny = 1.43, Nq = 2.97, Nc = 9.29 },
+                new TerzaghiCoefficients { Phi = 13, Ny = 1.69, Nq = 3.26, Nc = 9.8 },
+                new TerzaghiCoefficients { Phi = 14, Ny = 1.99, Nq = 3.59, Nc = 10.4 },
+                new TerzaghiCoefficients { Phi = 15, Ny = 2.32, Nq = 3.94, Nc = 11 },
+                new TerzaghiCoefficients { Phi = 16, Ny = 2.72, Nq = 4.33, Nc = 11.6 },
+                new TerzaghiCoefficients { Phi = 17, Ny = 3.14, Nq = 4.77, Nc = 12.3 },
+                new TerzaghiCoefficients { Phi = 18, Ny = 3.69, Nq = 5.25, Nc = 13.1 },
+                new TerzaghiCoefficients { Phi = 19, Ny = 4.29, Nq = 5.8, Nc = 13.9 },
+                new TerzaghiCoefficients { Phi = 20, Ny = 4.97, Nq = 6.4, Nc = 14.8 },
+                new TerzaghiCoefficients { Phi = 21, Ny = 5.76, Nq = 7.07, Nc = 15.8 },
+                new TerzaghiCoefficients { Phi = 22, Ny = 6.68, Nq = 8.83, Nc = 16.9 },
+                new TerzaghiCoefficients { Phi = 23, Ny = 7.73, Nq = 8.66, Nc = 18.1 },
+                new TerzaghiCoefficients { Phi = 24, Ny = 8.97, Nq = 9.6, Nc = 19.3 },
+                new TerzaghiCoefficients { Phi = 25, Ny = 10.4, Nq = 10.7, Nc = 20.7 },
+                new TerzaghiCoefficients { Phi = 26, Ny = 12, Nq = 11.8, Nc = 22.2 },
+                new TerzaghiCoefficients { Phi = 27, Ny = 13.9, Nq = 13.2, Nc = 24 },
+                new TerzaghiCoefficients { Phi = 28, Ny = 16.1, Nq = 14.7, Nc = 25.8 },
+                new TerzaghiCoefficients { Phi = 29, Ny = 18.8, Nq = 16.4, Nc = 27.9 },
+                new TerzaghiCoefficients { Phi = 30, Ny = 21.8, Nq = 18.4, Nc = 30.4 },
+                new TerzaghiCoefficients { Phi = 31, Ny = 25.5, Nq = 20.6, Nc = 32.7 },
+                new TerzaghiCoefficients { Phi = 32, Ny = 29.8, Nq = 23.2, Nc = 35.5 },
+                new TerzaghiCoefficients { Phi = 33, Ny = 34.8, Nq = 26.1, Nc = 38.7 },
+                new TerzaghiCoefficients { Phi = 34, Ny = 40.9, Nq = 29.4, Nc = 42.2 },
+                new TerzaghiCoefficients { Phi = 35, Ny = 48, Nq = 33.3, Nc = 46.1 },
+                new TerzaghiCoefficients { Phi = 36, Ny = 56.6, Nq = 37.8, Nc = 50.6 },
+                new TerzaghiCoefficients { Phi = 37, Ny = 67, Nq = 42.9, Nc = 55.7 },
+                new TerzaghiCoefficients { Phi = 38, Ny = 79.5, Nq = 48.9, Nc = 61.4 },
+                new TerzaghiCoefficients { Phi = 39, Ny = 94.7, Nq = 56, Nc = 67.9 },
+                new TerzaghiCoefficients { Phi = 40, Ny = 113, Nq = 64.2, Nc = 75.4 },
+                new TerzaghiCoefficients { Phi = 41, Ny = 133, Nq = 73.9, Nc = 83.9 },
+                new TerzaghiCoefficients { Phi = 42, Ny = 164, Nq = 85.4, Nc = 93.7 },
+                new TerzaghiCoefficients { Phi = 43, Ny = 199, Nq = 99, Nc = 105 },
+                new TerzaghiCoefficients { Phi = 44, Ny = 244, Nq = 111.5, Nc = 118 },
+                new TerzaghiCoefficients { Phi = 45, Ny = 297, Nq = 135, Nc = 135 }
+            };
+
+            // Sắp xếp bảng theo góc φ
+            var ordered = table.OrderBy(d => d.Phi).ToList();
+
+            // Tìm giá trị chính xác
+            var exact = ordered.FirstOrDefault(d => Math.Abs(d.Phi - phi) < 0.001);
+            if (exact != null) return exact;
+
+            // Tìm 2 điểm gần nhất
+            var lower = ordered.LastOrDefault(d => d.Phi <= phi);
+            var upper = ordered.FirstOrDefault(d => d.Phi >= phi);
+
+            if (lower == null || upper == null) return null;
+
+            // Tính nội suy tuyến tính
+            double ratio = (phi - lower.Phi) / (upper.Phi - lower.Phi);
+
+            return new TerzaghiCoefficients
+            {
+                Phi = phi,
+                Ny = lower.Ny + ratio * (upper.Ny - lower.Ny),
+                Nq = lower.Nq + ratio * (upper.Nq - lower.Nq),
+                Nc = lower.Nc + ratio * (upper.Nc - lower.Nc)
+            };
+        }
+
+        private void CalculateReinforcementDetails()
+        {
+            if (SelectedSteelDiameter <= 0) return;
+
+            // Tính diện tích một thanh thép (cm2)
+            double singleBarArea = Math.PI * Math.Pow(SelectedSteelDiameter / 10.0, 2) / 4;
+
+            // Tính số thanh thép cần thiết
+            int numberOfBars = (int)Math.Ceiling(_calculatedSteelArea / singleBarArea);
+
+            // Đảm bảo số thanh là số lẻ để đối xứng
+            if (numberOfBars % 2 == 0) numberOfBars++;
+
+            // Tính diện tích thép thực tế
+            double actualArea = numberOfBars * singleBarArea;
+
+            // Tính khoảng cách giữa các thanh (mm)
+            int spacing = 200; // Mặc định 200mm hoặc tính toán dựa trên kích thước móng
+
+            CalculatedSteelBars = numberOfBars;
+            CalculatedSteelArea = actualArea.ToString();
+            CalculatedSteelSpacing = spacing;
+        }
+
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        protected new virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public class TerzaghiCoefficients
+    {
+        public double Phi { get; set; }
+        public double Ny { get; set; }
+        public double Nq { get; set; }
+        public double Nc { get; set; }
     }
 }
