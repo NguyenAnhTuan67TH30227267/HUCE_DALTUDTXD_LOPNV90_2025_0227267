@@ -250,7 +250,13 @@
                                 Foreground="{StaticResource plainTextColor1Brush}"
                                 FontWeight="SemiBold"/>
                         <Viewbox Stretch="UniformToFill">
-                            <Canvas Width="300" Height="250" Background="#2A2A2A" >
+                            <Canvas Width="300" Height="250" Background="#2A2A2A" 
+                                    ClipToBounds="True"
+                                    x:Name="ViewportCanvas"
+                                    MouseWheel="Viewport_MouseWheel"
+                                    MouseRightButtonDown="Viewport_MouseRightButtonDown"
+                                    MouseRightButtonUp="Viewport_MouseRightButtonUp"
+                                    MouseMove="Viewport_MouseMove">
 
                                 <Line X1="0" Y1="{Binding GroundLevelLineTopPx}"
                                     X2="300" Y2="{Binding GroundLevelLineTopPx}"
