@@ -306,120 +306,164 @@
                 </StackPanel>
             </Border>
 
-            <!-- Kết luận tổng kết -->
-            <Border Background="{StaticResource secondaryBackColor1Brush}"
-                    BorderBrush="{StaticResource winBorderColor1Brush}"
-                    BorderThickness="2"
-                    CornerRadius="8"
-                    Padding="15"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Center">
+            <WrapPanel>
                 <StackPanel>
-                    <TextBlock Text="KẾT LUẬN THIẾT KẾ"
-                               FontWeight="Bold"
-                               FontSize="16"
-                               Foreground="{StaticResource color3Brush}"
-                               HorizontalAlignment="Center"
-                               Margin="0,0,0,10"/>
-                    <TextBlock Text="{Binding KetLuanTongThe}"
-                               FontSize="14"
-                               Foreground="{StaticResource titleColor2Brush}"
-                               HorizontalAlignment="Center"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center"
-                               MaxWidth="600"/>
+                    <!-- Kết luận tổng kết -->
+                    <Border Background="{StaticResource panelColorBrush}"
+                            BorderBrush="{StaticResource winBorderColor1Brush}"
+                            BorderThickness="2"
+                            CornerRadius="8"
+                            Padding="15"
+                            Margin="60,20,0,0"
+                            HorizontalAlignment="Left">
+                        <StackPanel>
+                            <TextBlock Text="KẾT LUẬN THIẾT KẾ"
+                                FontWeight="Bold"
+                                FontSize="16"
+                                Foreground="{StaticResource color3Brush}"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,10"/>
+                            <TextBlock Text="{Binding KetLuanTongThe}"
+                                FontSize="10"
+                                Foreground="{StaticResource titleColor2Brush}"
+                                HorizontalAlignment="Center"
+                                TextWrapping="Wrap"
+                                TextAlignment="Center"
+                                MaxWidth="300"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Tính toán cốt thép -->
+                    <Border Background="{StaticResource secondaryBackColor1Brush}"
+                            BorderBrush="{StaticResource winBorderColor1Brush}"
+                            BorderThickness="1"
+                            CornerRadius="8" Height="150" Width="380"
+                            Padding="15" HorizontalAlignment="Left"
+                            Margin="0,20,0,0">
+                        <StackPanel>
+                            <TextBlock Text="TÍNH TOÁN CỐT THÉP"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource color3Brush}"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,15"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <WrapPanel >
+                                    <TextBlock Text="Đường kính thanh (mm):"
+                                        Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource titleColor2Brush}"
+                                        FontWeight="SemiBold"
+                                        Margin="0,0,10,0"/>
+                                    <ComboBox 
+                                        Width="80"
+                                        Height="32"
+                                        ItemsSource="{Binding SteelDiameters}"
+                                        SelectedItem="{Binding SelectedSteelDiameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Background="{StaticResource panelColorBrush}"
+                                        BorderBrush="{StaticResource winBorderColor1Brush}"
+                                        Foreground="black"
+                                        Margin="0,0,20,0"/>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="1" >
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
+                                        <TextBlock Text="Số thanh:"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource titleColor2Brush}"
+                                            FontWeight="SemiBold"
+                                            Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding CalculatedSteelBars}"
+                                            VerticalAlignment="Center"
+                                            FontWeight="Bold"
+                                            Foreground="{StaticResource color1Brush}"/>
+                                        <TextBlock Text=" thanh"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource titleColor2Brush}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
+                                        <TextBlock Text="Diện tích:"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource titleColor2Brush}"
+                                            FontWeight="SemiBold"
+                                            Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding CalculatedSteelArea}"
+                                            VerticalAlignment="Center"
+                                            FontWeight="Bold"
+                                            Foreground="{StaticResource color1Brush}"/>
+                                        <TextBlock Text=" cm²"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource titleColor2Brush}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Text="Khoảng cách:"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource titleColor2Brush}"
+                                            FontWeight="SemiBold"
+                                            Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding CalculatedSteelSpacing}"
+                                            VerticalAlignment="Center"
+                                            FontWeight="Bold"
+                                            Foreground="{StaticResource color1Brush}"/>
+                                        <TextBlock Text=" mm"
+                                            VerticalAlignment="Center"
+                                            Foreground="{StaticResource titleColor2Brush}"/>
+                                    </StackPanel>
+                                </WrapPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
-            </Border>
+                <StackPanel HorizontalAlignment="Center">
+                    <Border Background="#252525" 
+                        BorderBrush="#3C3C3C" 
+                        BorderThickness="1" 
+                        CornerRadius="10" 
+                        Margin="20,20,0,0" 
+                        Height="270" Width="480"
+                        HorizontalAlignment="Center">
+                        <Grid>
+                            <TextBlock Text="MẶT CẮT MÓNG" 
+                                Foreground="#62E8E2" 
+                                Margin="15,10" 
+                                FontWeight="Bold"/>
 
-            <!-- Tính toán cốt thép -->
-            <Border Background="{StaticResource secondaryBackColor1Brush}"
-                    BorderBrush="{StaticResource winBorderColor1Brush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="15"
-                    Margin="0,20,0,0">
-                <StackPanel>
-                    <TextBlock Text="TÍNH TOÁN CỐT THÉP"
-                               FontSize="18"
-                               FontWeight="Bold"
-                               Foreground="{StaticResource color3Brush}"
-                               HorizontalAlignment="Center"
-                               Margin="0,0,0,15"/>
+                            <Viewbox Stretch="Uniform" Margin="10,40,10,15">
+                                <Canvas Width="380" Height="220" Background="Transparent">
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                                    <Path Data="{Binding FoundationOutline}" 
+                                        Fill="#444444" 
+                                        Stroke="White" 
+                                        StrokeThickness="1.5"/>
 
-                        <TextBlock Text="Đường kính thanh (mm):"
-                                   Grid.Column="0"
-                                   VerticalAlignment="Center"
-                                   Foreground="{StaticResource titleColor2Brush}"
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,10,0"/>
-                        <ComboBox Grid.Column="1"
-                                  Width="80"
-                                  Height="32"
-                                  ItemsSource="{Binding SteelDiameters}"
-                                  SelectedItem="{Binding SelectedSteelDiameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  Background="{StaticResource panelColorBrush}"
-                                  BorderBrush="{StaticResource winBorderColor1Brush}"
-                                   Foreground="black"
-                                  Margin="0,0,20,0"/>
+                                    <Path Data="{Binding GeometryGroup_LongRebar}" 
+                                        Fill="Black" 
+                                        Stroke="Black" 
+                                        StrokeThickness="1"/>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="0,0,20,0">
-                            <TextBlock Text="Số thanh:"
-                                       VerticalAlignment="Center"
-                                       Foreground="{StaticResource titleColor2Brush}"
-                                       FontWeight="SemiBold"
-                                       Margin="0,0,5,0"/>
-                            <TextBlock Text="{Binding CalculatedSteelBars}"
-                                       VerticalAlignment="Center"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource color1Brush}"/>
-                            <TextBlock Text=" thanh"
-                                       VerticalAlignment="Center"
-                                       Foreground="{StaticResource titleColor2Brush}"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Grid.Column="3" Margin="0,0,20,0">
-                            <TextBlock Text="Diện tích:"
-                                       VerticalAlignment="Center"
-                                       Foreground="{StaticResource titleColor2Brush}"
-                                       FontWeight="SemiBold"
-                                       Margin="0,0,5,0"/>
-                            <TextBlock Text="{Binding CalculatedSteelArea}"
-                                       VerticalAlignment="Center"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource color1Brush}"/>
-                            <TextBlock Text=" cm²"
-                                       VerticalAlignment="Center"
-                                       Foreground="{StaticResource titleColor2Brush}"/>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal" Grid.Column="4">
-                            <TextBlock Text="Khoảng cách:"
-                                       VerticalAlignment="Center"
-                                       Foreground="{StaticResource titleColor2Brush}"
-                                       FontWeight="SemiBold"
-                                       Margin="0,0,5,0"/>
-                            <TextBlock Text="{Binding CalculatedSteelSpacing}"
-                                       VerticalAlignment="Center"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource color1Brush}"/>
-                            <TextBlock Text=" mm"
-                                       VerticalAlignment="Center"
-                                       Foreground="{StaticResource titleColor2Brush}"/>
-                        </StackPanel>
-                    </Grid>
+                                    <TextBlock Text="{Binding CalculatedSteelBars, StringFormat='{}{0} thanh'}" 
+                                        Canvas.Bottom="-5" 
+                                        Canvas.Left="140" 
+                                        Foreground="#62E8E2" 
+                                        FontSize="14"
+                                        FontWeight="Bold"/>
+                                </Canvas>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
                 </StackPanel>
-            </Border>
-
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </UserControl>
