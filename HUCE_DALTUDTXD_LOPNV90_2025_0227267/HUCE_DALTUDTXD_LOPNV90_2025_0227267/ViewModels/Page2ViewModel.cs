@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -105,14 +106,42 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
         }
 
 
-        // --- Selected để xóa ---
+        // --- CLick để sửa ---
         private ConstructionEntry _selectedConstructionEntry;
         public ConstructionEntry SelectedConstructionEntry
         {
             get => _selectedConstructionEntry;
-            set { _selectedConstructionEntry = value; OnPropertyChanged(nameof(SelectedConstructionEntry)); }
+            set
+            {
+                _selectedConstructionEntry = value;
+                OnPropertyChanged(nameof(SelectedConstructionEntry));
+
+                if (_selectedConstructionEntry != null)
+                {
+                    // ĐỔ DỮ LIỆU LÊN FORM
+                    NewConstructionEntry.TenMong = _selectedConstructionEntry.TenMong;
+                    NewConstructionEntry.ChieuSauChonMong = _selectedConstructionEntry.ChieuSauChonMong;
+                    NewConstructionEntry.ChieuRongMong = _selectedConstructionEntry.ChieuRongMong;
+                    NewConstructionEntry.CapDoBeTong = _selectedConstructionEntry.CapDoBeTong;
+                    NewConstructionEntry.LoaiThep = _selectedConstructionEntry.LoaiThep;
+                    NewConstructionEntry.ChieuDayLopBaoVe = _selectedConstructionEntry.ChieuDayLopBaoVe;
+                    NewConstructionEntry.BeDayTuong = _selectedConstructionEntry.BeDayTuong;
+                    NewConstructionEntry.ChieuCaoDai = _selectedConstructionEntry.ChieuCaoDai;
+
+                    // BẮT BUỘC cập nhật UI + Canvas
+                    OnPropertyChanged(nameof(NewConstructionEntry));
+                    OnPropertyChanged(nameof(ChieuRongMongProxy));
+                    OnPropertyChanged(nameof(ChieuSauChonMongProxy));
+                    OnPropertyChanged(nameof(ChieuCaoDaiProxy));
+                    OnPropertyChanged(nameof(BeDayTuongProxy));
+                }
+
+                // cập nhật trạng thái Command
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
 
+        // --- Select để xóa ---
         private FoundationEntry _selectedSoilLayer;
         public FoundationEntry SelectedSoilLayer
         {
@@ -123,6 +152,8 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 OnPropertyChanged(nameof(SelectedSoilLayer));
             }
         }
+
+
 
         // Cập nhật khi chọn tên móng
         public string SelectedFoundationName
@@ -363,9 +394,36 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
         private void DeleteSelectedConstructionEntry()
         {
-            if (SelectedConstructionEntry != null)
+            if (SelectedConstructionEntry == null) return;
+
+            var result = MessageBox.Show(
+                "Bạn có chắc chắn muốn xóa móng đang chọn không?",
+                "Xác nhận xóa",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
                 ConstructionList.Remove(SelectedConstructionEntry);
+                SelectedConstructionEntry = null;
+
+                //  THÊM NGAY TẠI ĐÂY
+                CommandManager.InvalidateRequerySuggested();
+
+                //  RESET FORM NHẬP
+                NewConstructionEntry = new ConstructionEntry
+                {
+                    CapDoBeTong = DanhSachCapDoBeTong[2],
+                    LoaiThep = DanhSachLoaiThep[2],
+                    ChieuDayLopBaoVe = 25,
+                    BeDayTuong = 0.22,
+                    ChieuCaoDai = 0.6,
+                    ChieuRongMong = 1.0,
+                    ChieuSauChonMong = 1.0
+                };
+            }
         }
+
 
         public ObservableCollection<ConstructionEntry> ConstructionList => _mainViewModel.ConstructionList;
     }
@@ -420,4 +478,9 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => Binding.DoNothing;
     }
+   
+   
+
+          
+
 }

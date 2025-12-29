@@ -113,10 +113,11 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="15">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0"
@@ -367,5 +368,7 @@
                 </DataGrid>
             </Grid>
         </Border>
+                        
     </Grid>
+    
 </UserControl>
