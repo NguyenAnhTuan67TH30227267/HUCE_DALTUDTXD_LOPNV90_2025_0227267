@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\views\\page3view.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:views\\page3view.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\views\\page2view.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:views\\page2view.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|d:\\huce\\\u0111\u1ED3 \u00E1n ltudtxd\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\huce_daltudtxd_lopnv90_2025_0227267\\views\\page2view.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{674ADF61-570C-4A9C-A9B4-049A8AD458B0}|HUCE_DALTUDTXD_LOPNV90_2025_0227267.csproj|solutionrelative:views\\page2view.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,13 +51,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Page3View.xaml",
-              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Views\\Page3View.xaml",
-              "RelativeDocumentMoniker": "Views\\Page3View.xaml",
-              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Views\\Page3View.xaml*",
-              "RelativeToolTip": "Views\\Page3View.xaml*",
+              "Title": "Page2View.xaml",
+              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Views\\Page2View.xaml",
+              "RelativeDocumentMoniker": "Views\\Page2View.xaml",
+              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Views\\Page2View.xaml",
+              "RelativeToolTip": "Views\\Page2View.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-28T14:34:20.029Z",
+              "WhenOpened": "2025-12-29T02:37:32.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Page2View.xaml.cs",
+              "DocumentMoniker": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Views\\Page2View.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\Page2View.xaml.cs",
+              "ToolTip": "D:\\Huce\\\u0110\u1ED3 \u00E1n LTUDTXD\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\HUCE_DALTUDTXD_LOPNV90_2025_0227267\\Views\\Page2View.xaml.cs",
+              "RelativeToolTip": "Views\\Page2View.xaml.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAxwE8AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T02:33:36.345Z",
               "EditorCaption": ""
             }
           ]
