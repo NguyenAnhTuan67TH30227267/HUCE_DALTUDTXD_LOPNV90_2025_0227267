@@ -93,7 +93,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
         {
             _mainViewModel = mainViewModel;
             _forceInput = new ForceInputEntry();
-            //SaveCommand = new RelayCommand(SaveData);
+            SaveCommand = new RelayCommand(SaveData);
             ShowCalculatorViewCommand = new RelayCommand(ExecuteShowCalculatorView);
 
             // Khởi tạo danh sách nội lực

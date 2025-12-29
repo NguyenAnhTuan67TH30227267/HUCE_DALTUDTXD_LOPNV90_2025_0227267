@@ -164,16 +164,7 @@
                           DisplayMemberPath="TenMong"
                           SelectedItem="{Binding SelectedMong, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource ModernComboBox}"/>
-                </WrapPanel>
-                <!-- Nút lấy dữ liệu từ ETABS -->
-                <Button Content="📊 LẤY DỮ LIỆU TỪ ETABS"
-                        Command="{Binding ImportEtabsDataCommand}"
-                        Style="{StaticResource PrimaryButton}"
-                        Background="{StaticResource color9Brush}"
-                        Width="200"
-                        HorizontalAlignment="Center"
-                        Margin="10,10"/>
-                <WrapPanel>
+                
                     <!-- Moment (M) Input -->
                     <TextBlock Text="Moment (M):"
                            FontWeight="SemiBold"
@@ -187,7 +178,7 @@
                 </WrapPanel>
                 <WrapPanel>
                     <!-- Axial Force (N) Input -->
-                    <TextBlock Text="Lực Dọc (N):"
+                    <TextBlock Text="Lực Dọc (N): "
                            FontWeight="SemiBold"
                            Foreground="{StaticResource color9Brush}"
                            FontSize="15"
@@ -199,7 +190,7 @@
                 </WrapPanel>
                 <WrapPanel>
                     <!-- Shear Force (Q) Input -->
-                    <TextBlock Text="Lực Cắt (Q):"
+                    <TextBlock Text="Lực Cắt (Q):  "
                            FontWeight="SemiBold"
                            Foreground="{StaticResource color9Brush}"
                            FontSize="15"
