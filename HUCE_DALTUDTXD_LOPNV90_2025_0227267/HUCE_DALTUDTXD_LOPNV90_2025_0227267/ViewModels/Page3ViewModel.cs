@@ -529,6 +529,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
             CalculatedSteelBars = numberOfBars;
             CalculatedSteelArea = actualArea.ToString();
             CalculatedSteelSpacing = spacing;
+            DrawFoundationDrawing();
         }
 
         public new event PropertyChangedEventHandler PropertyChanged;
@@ -536,6 +537,75 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
         protected new virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private Geometry _foundationOutline;
+        public Geometry FoundationOutline { get => _foundationOutline; set { _foundationOutline = value; OnPropertyChanged(); } }
+
+        private Geometry _geometryGroup_LongRebar;
+        public Geometry GeometryGroup_LongRebar { get => _geometryGroup_LongRebar; set { _geometryGroup_LongRebar = value; OnPropertyChanged(); } }
+
+        public void DrawFoundationDrawing()
+        {
+            // 1. Thông số thực tế (mm)
+            double B_real = ChieuRongMong * 1000;
+            double Bc_real = 300; // Bề rộng cổ cột
+            double H1 = 300, H2 = 200, H3 = 400; // Các cao độ móng
+            double lopBaoVe = 50; // Lớp bảo vệ bê tông
+
+            // 2. Kích thước khung Canvas mới (Phù hợp với Height 280 của Border)
+            double canvasW = 380;
+            double canvasH = 220;
+
+            // 3. Tính toán tỉ lệ Scale để hình luôn nằm gọn
+            double scale = Math.Min((canvasW - 40) / B_real, (canvasH - 40) / (H1 + H2 + H3));
+
+            // Điểm gốc (giữa đáy Canvas)
+            double originX = canvasW / 2;
+            double originY = canvasH - 20;
+
+            // 4. Vẽ viền móng chữ T
+            StreamGeometry geo = new StreamGeometry();
+            using (StreamGeometryContext ctx = geo.Open())
+            {
+                ctx.BeginFigure(new Point(originX - (B_real / 2) * scale, originY), true, true);
+                ctx.LineTo(new Point(originX + (B_real / 2) * scale, originY), true, false);
+                ctx.LineTo(new Point(originX + (B_real / 2) * scale, originY - H1 * scale), true, false);
+                ctx.LineTo(new Point(originX + (Bc_real / 2) * scale, originY - (H1 + H2) * scale), true, false);
+                ctx.LineTo(new Point(originX + (Bc_real / 2) * scale, originY - (H1 + H2 + H3) * scale), true, false);
+                ctx.LineTo(new Point(originX - (Bc_real / 2) * scale, originY - (H1 + H2 + H3) * scale), true, false);
+                ctx.LineTo(new Point(originX - (Bc_real / 2) * scale, originY - (H1 + H2) * scale), true, false);
+                ctx.LineTo(new Point(originX - (B_real / 2) * scale, originY - H1 * scale), true, false);
+            }
+            FoundationOutline = geo;
+
+            // 5. VẼ CÁC THANH THÉP TRÒN (MÀU ĐEN)
+            GeometryGroup rebarGroup = new GeometryGroup();
+            int n = CalculatedSteelBars;
+
+            if (n > 0)
+            {
+                // Thanh thép ngang đáy móng
+                rebarGroup.Children.Add(new LineGeometry(
+                    new Point(originX - (B_real / 2 - lopBaoVe) * scale, originY - lopBaoVe * scale),
+                    new Point(originX + (B_real / 2 - lopBaoVe) * scale, originY - lopBaoVe * scale)));
+
+                // Vẽ các chấm tròn (thép dọc)
+                if (n > 1)
+                {
+                    double startX = originX - (B_real / 2 - lopBaoVe - 15) * scale;
+                    double endX = originX + (B_real / 2 - lopBaoVe - 15) * scale;
+                    double dist = (endX - startX) / (n - 1);
+
+                    for (int i = 0; i < n; i++)
+                    {
+                        // Vẽ thép tròn bằng EllipseGeometry
+                        rebarGroup.Children.Add(new EllipseGeometry(
+                            new Point(startX + i * dist, originY - (lopBaoVe + 10) * scale),
+                            2.5, 2.5)); // Bán kính 2.5px
+                    }
+                }
+            }
+            GeometryGroup_LongRebar = rebarGroup;
         }
     }
 
