@@ -106,42 +106,14 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
         }
 
 
-        // --- CLick để sửa ---
+        // --- Selected để xóa ---
         private ConstructionEntry _selectedConstructionEntry;
         public ConstructionEntry SelectedConstructionEntry
         {
             get => _selectedConstructionEntry;
-            set
-            {
-                _selectedConstructionEntry = value;
-                OnPropertyChanged(nameof(SelectedConstructionEntry));
-
-                if (_selectedConstructionEntry != null)
-                {
-                    // ĐỔ DỮ LIỆU LÊN FORM
-                    NewConstructionEntry.TenMong = _selectedConstructionEntry.TenMong;
-                    NewConstructionEntry.ChieuSauChonMong = _selectedConstructionEntry.ChieuSauChonMong;
-                    NewConstructionEntry.ChieuRongMong = _selectedConstructionEntry.ChieuRongMong;
-                    NewConstructionEntry.CapDoBeTong = _selectedConstructionEntry.CapDoBeTong;
-                    NewConstructionEntry.LoaiThep = _selectedConstructionEntry.LoaiThep;
-                    NewConstructionEntry.ChieuDayLopBaoVe = _selectedConstructionEntry.ChieuDayLopBaoVe;
-                    NewConstructionEntry.BeDayTuong = _selectedConstructionEntry.BeDayTuong;
-                    NewConstructionEntry.ChieuCaoDai = _selectedConstructionEntry.ChieuCaoDai;
-
-                    // BẮT BUỘC cập nhật UI + Canvas
-                    OnPropertyChanged(nameof(NewConstructionEntry));
-                    OnPropertyChanged(nameof(ChieuRongMongProxy));
-                    OnPropertyChanged(nameof(ChieuSauChonMongProxy));
-                    OnPropertyChanged(nameof(ChieuCaoDaiProxy));
-                    OnPropertyChanged(nameof(BeDayTuongProxy));
-                }
-
-                // cập nhật trạng thái Command
-                CommandManager.InvalidateRequerySuggested();
-            }
+            set { _selectedConstructionEntry = value; OnPropertyChanged(nameof(SelectedConstructionEntry)); }
         }
 
-        // --- Select để xóa ---
         private FoundationEntry _selectedSoilLayer;
         public FoundationEntry SelectedSoilLayer
         {
@@ -152,8 +124,6 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 OnPropertyChanged(nameof(SelectedSoilLayer));
             }
         }
-
-
 
         // Cập nhật khi chọn tên móng
         public string SelectedFoundationName
@@ -177,7 +147,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
             }
             return null;
         }
-
+                              
         // --- Danh sách tên móng từ Page1 ---
         public ObservableCollection<string> FoundationNames
         {
@@ -284,44 +254,34 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
         private void AddConstructionEntry()
         {
-            if (ValidateEntry())
+            if (!ValidateEntry()) return;
+
+            var existing = ConstructionList.FirstOrDefault(x => x.TenMong == NewConstructionEntry.TenMong);
+
+            // Tạo đối tượng mới chứa dữ liệu cập nhật
+            var updatedEntry = new ConstructionEntry
             {
-                var soilLayers = FindSoilLayersByName(NewConstructionEntry.TenMong);
-                var soilLayerAtDepth = FindSoilLayerAtDepth(soilLayers, NewConstructionEntry.ChieuSauChonMong);
+                TenMong = NewConstructionEntry.TenMong,
+                ChieuSauChonMong = NewConstructionEntry.ChieuSauChonMong,
+                ChieuRongMong = NewConstructionEntry.ChieuRongMong,
+                CapDoBeTong = NewConstructionEntry.CapDoBeTong,
+                LoaiThep = NewConstructionEntry.LoaiThep,
+                ChieuDayLopBaoVe = NewConstructionEntry.ChieuDayLopBaoVe,
+                BeDayTuong = NewConstructionEntry.BeDayTuong,
+                ChieuCaoDai = NewConstructionEntry.ChieuCaoDai,
+                SoilLayer = FindSoilLayerAtDepth(FindSoilLayersByName(NewConstructionEntry.TenMong), NewConstructionEntry.ChieuSauChonMong)
+            };
 
-                ConstructionList.Add(new ConstructionEntry
-                {
-                    TenMong = NewConstructionEntry.TenMong,
-                    ChieuSauChonMong = NewConstructionEntry.ChieuSauChonMong,
-                    ChieuRongMong = NewConstructionEntry.ChieuRongMong,
-                    CapDoBeTong = NewConstructionEntry.CapDoBeTong,
-                    LoaiThep = NewConstructionEntry.LoaiThep,
-                    ChieuDayLopBaoVe = NewConstructionEntry.ChieuDayLopBaoVe,
-                    BeDayTuong = NewConstructionEntry.BeDayTuong,
-                    ChieuCaoDai = NewConstructionEntry.ChieuCaoDai,
-                    SoilLayer = soilLayerAtDepth
-                });
-
-                // Lấy các giá trị thiết lập không phải kích thước để gán lại cho Entry mới
-                var capDoBeTong = NewConstructionEntry.CapDoBeTong;
-                var loaiThep = NewConstructionEntry.LoaiThep;
-                var chieuDayBaoVe = NewConstructionEntry.ChieuDayLopBaoVe;
-                var beDayTuong = NewConstructionEntry.BeDayTuong;
-                var chieuCaoDai = NewConstructionEntry.ChieuCaoDai;
-
-                // TẠO MỘT INSTANCE MỚI VÀ GÁN LẠI CÁC GIÁ TRỊ MẶC ĐỊNH
-                NewConstructionEntry = new ConstructionEntry
-                {
-                    CapDoBeTong = capDoBeTong,
-                    LoaiThep = loaiThep,
-                    ChieuDayLopBaoVe = chieuDayBaoVe,
-                    BeDayTuong = beDayTuong,
-
-                    // Gán lại mặc định cho kích thước để hình ảnh vẫn hiển thị
-                    ChieuRongMong = 1.0,
-                    ChieuSauChonMong = 1.0,
-                    ChieuCaoDai = 0.6
-                };
+            if (existing != null)
+            {
+                // Tìm vị trí index của phần tử cũ
+                int index = ConstructionList.IndexOf(existing);
+                // Thay thế phần tử cũ bằng phần tử mới 
+                ConstructionList[index] = updatedEntry;
+            }
+            else
+            {
+                ConstructionList.Add(updatedEntry);
             }
         }
 
