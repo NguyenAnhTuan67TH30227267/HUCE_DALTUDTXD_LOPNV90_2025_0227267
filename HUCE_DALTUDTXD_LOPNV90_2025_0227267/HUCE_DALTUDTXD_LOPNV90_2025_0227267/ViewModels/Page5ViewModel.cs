@@ -31,10 +31,11 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 {
                     _chieuRongMong = value;
                     OnPropertyChanged(nameof(ChieuRongMong));
-                    
+                    CalculateValues();
                 }
             }
         }
+
         public double ChieuSauChonMong
         {
             get => _chieuSauChonMong;
@@ -44,10 +45,11 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 {
                     _chieuSauChonMong = value;
                     OnPropertyChanged(nameof(ChieuSauChonMong));
-                    
+                    CalculateValues();
                 }
             }
         }
+
         public double Ptb
         {
             get => _ptb;
@@ -86,6 +88,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 }
             }
         }
+
         public double P0
         {
             get => _p0;
@@ -150,6 +153,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                 }
             }
         }
+
         public ForceInputEntry SelectedForceInput
         {
             get => _selectedForceInput;
@@ -178,6 +182,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
             ChieuRongMong = 1.0;
             ChieuSauChonMong = 1.0;
         }
+
         private void CalculateValues()
         {
             try
@@ -239,6 +244,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
                     "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void ClearValues()
         {
             Ptb = 0;
