@@ -95,8 +95,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
             // Xóa dữ liệu trong bảng hiện tại
             FoundationList.Clear();
-
-            MessageBox.Show($"Đã lưu {newAxis.Name} thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Đã lưu trục địa chất thành công!");
         }
     }
 }
