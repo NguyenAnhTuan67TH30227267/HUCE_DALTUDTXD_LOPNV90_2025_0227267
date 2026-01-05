@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:HUCE_DALTUDTXD_LOPNV90_2025_0227267.Views"
+                    xmlns:vm="clr-namespace:HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels"
              mc:Ignorable="d"
-             d:DesignWidth="800" d:DesignHeight="600"
+             d:DesignWidth="1000" d:DesignHeight="600"
             >
 
     <UserControl.Resources>
+        
         <!-- Color Resources -->
         <SolidColorBrush x:Key="primaryBackColor1Brush" Color="#1E1E1E"/>
         <SolidColorBrush x:Key="secondaryBackColor1Brush" Color="#2F2F2F"/>
@@ -40,9 +42,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="6">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
                             <ScrollViewer Margin="2" x:Name="PART_ContentHost"/>
                         </Border>
                     </ControlTemplate>
@@ -78,12 +80,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="6">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Margin="{TemplateBinding Padding}"/>
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -101,230 +103,80 @@
 
             <!-- Title -->
             <TextBlock Text="KIỂM TRA SỨC CHỊU TẢI CỦA MÓNG"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   Foreground="{StaticResource color3Brush}"
-                   HorizontalAlignment="Center"
-                   Margin="0,0,0,20"/>
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource color3Brush}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"/>
 
             <!-- Section: Chọn nội lực -->
             <Border Background="{StaticResource secondaryBackColor1Brush}"
-                BorderBrush="{StaticResource winBorderColor1Brush}"
-                BorderThickness="1"
-                CornerRadius="8"
-                Padding="15"
-                Margin="0,0,0,20">
+        BorderBrush="{StaticResource winBorderColor1Brush}"
+        BorderThickness="1"
+        CornerRadius="8"
+        Padding="15">
                 <StackPanel>
-                    <TextBlock Text="CHỌN NỘI LỰC"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource color3Brush}"
-                           Margin="0,0,0,10"/>
-                    <ComboBox ItemsSource="{Binding ForceInputList}"
-                          SelectedItem="{Binding SelectedForceInput, UpdateSourceTrigger=PropertyChanged}"
-                          Style="{StaticResource ModernComboBox}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Mong.TenMong}" FontWeight="Bold"  Foreground="black"/>
-                                    <TextBlock Text="  - M: " Margin="5,0"  Foreground="black"/>
-                                    <TextBlock Text="{Binding Moment, StringFormat=N2}"  Foreground="black"/>
-                                    <TextBlock Text="  - N: " Margin="5,0"  Foreground="black"/>
-                                    <TextBlock Text="{Binding AxialForce, StringFormat=N2}"  Foreground="black"/>
-                                    <TextBlock Text="  - Q: " Margin="5,0"  Foreground="black"/>
-                                    <TextBlock Text="{Binding ShearForce, StringFormat=N2}" Foreground="black"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </StackPanel>
-            </Border>
+                    <Grid Margin="0,0,0,10">
+                        <TextBlock Text="BẢNG TỔNG HỢP KIỂM TRA SỨC CHỊU TẢI"
+                       FontSize="18" FontWeight="Bold"
+                       Foreground="{StaticResource color3Brush}"/>
 
-            <!-- Section: Kích thước móng -->
-            <Border Background="{StaticResource secondaryBackColor1Brush}"
-                BorderBrush="{StaticResource winBorderColor1Brush}"
-                BorderThickness="1"
-                CornerRadius="8"
-                Padding="15"
-                Margin="0,0,0,20">
-                <StackPanel>
-                    <TextBlock Text="KÍCH THƯỚC MÓNG"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource color3Brush}"
-                           Margin="0,0,0,10"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Text="Chiều rộng móng (m):"
-                               Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,0"/>
-                        <TextBox Grid.Column="1"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding ChieuRongMong, UpdateSourceTrigger=PropertyChanged}"
-                             Width="150"/>
-
-                        <TextBlock Text="Chiều sâu chôn móng (m):"
-                               Grid.Column="2"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="20,0,5,0"/>
-                        <TextBox Grid.Column="3"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding ChieuSauChonMong, UpdateSourceTrigger=PropertyChanged}"
-                             Width="150"/>
+                        <Button Content="Tính toán lại" 
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding CalculateAllCommand}"/>
                     </Grid>
+
+                    <DataGrid ItemsSource="{Binding CalculationResults}"
+                  AutoGenerateColumns="False"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Foreground="White"
+                  RowBackground="#333333"
+                  AlternatingRowBackground="#3A3A3A"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  FontSize="13">
+
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource winBorderColor1Brush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                                <Setter Property="BorderBrush" Value="#222"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên Móng" Binding="{Binding TenMong}" Width="100"/>
+                            <DataGridTextColumn Header="Ptb (T/m²)" Binding="{Binding Ptb, StringFormat=N2}" Width="*"/>
+                            <DataGridTextColumn Header="Pmax (T/m²)" Binding="{Binding Pmax, StringFormat=N2}" Width="*"/>
+                            <DataGridTextColumn Header="Pmin (T/m²)" Binding="{Binding Pmin, StringFormat=N2}" Width="*"/>
+                            <DataGridTextColumn Header="P0max (T/m²)" Binding="{Binding P0max, StringFormat=N2}" Width="*"/>
+                            <DataGridTextColumn Header="P0 min (T/m2)" Binding="{Binding P0min}" Width="*"/>
+                            <DataGridTextColumn Header="P Đ.Thủng" Binding="{Binding PDamThung, StringFormat=N2}" Width="*"/>
+                            <DataGridTextColumn Header="P Chống ĐT" Binding="{Binding PChongDamThung, StringFormat=N2}" Width="*"/>
+                            <DataGridTextColumn Header="Độ lún S (cm)" 
+                            Binding="{Binding DoLun, StringFormat=N2}" 
+                            FontWeight="Bold"
+                            Foreground="#62E8E2"
+                            Width="*"/>
+                            <DataGridTemplateColumn Header="Ghi chú" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding GhiChu}" 
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{Binding GhiChu, Converter={StaticResource StatusToColorConverter}}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </Border>
-
-            <!-- Section: Kết quả tính toán -->
-            <Border Background="{StaticResource secondaryBackColor1Brush}"
-                BorderBrush="{StaticResource winBorderColor1Brush}"
-                BorderThickness="1"
-                CornerRadius="8"
-                Padding="15">
-                <StackPanel>
-                    <TextBlock Text="KẾT QUẢ TÍNH TOÁN"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource color3Brush}"
-                           Margin="0,0,0,10"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <!-- Row 0 -->
-                        <TextBlock Text="Ptb (T/m²):"
-                               Grid.Row="0" Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="0" Grid.Column="1"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding Ptb, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,20,5"/>
-
-                        <TextBlock Text="P0 (T/m²):"
-                               Grid.Row="0" Grid.Column="2"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="0" Grid.Column="3"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding P0, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,0,5"/>
-
-                        <!-- Row 1 -->
-                        <TextBlock Text="Pmax (T/m²):"
-                               Grid.Row="1" Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="1" Grid.Column="1"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding Pmax, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,20,5"/>
-
-                        <TextBlock Text="P0max (T/m²):"
-                               Grid.Row="1" Grid.Column="2"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="1" Grid.Column="3"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding P0max, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,0,5"/>
-
-                        <!-- Row 2 -->
-                        <TextBlock Text="Pmin (T/m²):"
-                               Grid.Row="2" Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="2" Grid.Column="1"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding Pmin, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,20,5"/>
-
-                        <TextBlock Text="P0min (T/m²):"
-                               Grid.Row="2" Grid.Column="2"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="2" Grid.Column="3"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding P0min, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,0,5"/>
-
-                        <!-- Row 3 -->
-                        <TextBlock Text="P đâm thủng (T/m²):"
-                               Grid.Row="3" Grid.Column="0"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="3" Grid.Column="1"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding PDamThung, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,20,5"/>
-
-                        <TextBlock Text="P chống đâm thủng (T/m²):"
-                               Grid.Row="3" Grid.Column="2"
-                               VerticalAlignment="Center"
-                               Foreground="{StaticResource titleColor1Brush}"
-                               Margin="0,0,5,5"/>
-                        <TextBox Grid.Row="3" Grid.Column="3"
-                             Style="{StaticResource ModernTextBox}"
-                             Text="{Binding PChongDamThung, Mode=OneWay, StringFormat=N2}"
-                             IsReadOnly="True"
-                             Foreground="{StaticResource titleColor1Brush}"
-                             Background="{StaticResource panelColorBrush}"
-                             Margin="0,5,0,5"/>
-                    </Grid>
-                </StackPanel>
-            </Border>
-
-
         </StackPanel>
     </ScrollViewer>
 </UserControl>
