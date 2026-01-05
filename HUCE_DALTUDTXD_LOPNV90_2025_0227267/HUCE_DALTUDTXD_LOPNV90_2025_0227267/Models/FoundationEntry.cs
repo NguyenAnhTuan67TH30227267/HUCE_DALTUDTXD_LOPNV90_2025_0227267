@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.Models
 {
@@ -17,5 +18,9 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.Models
         public double Lucdinhket { get; set; }
         public double Modunbiendang { get; set; }
         public string Vitrimong { get; set; }
+        public double RenderTop { get; set; }    // Vị trí Y bắt đầu vẽ
+        public double RenderHeight { get; set; } // Chiều cao 
+        public SolidColorBrush SoilColor { get; set; } // Màu sắc hiển thị
     }
 }
+

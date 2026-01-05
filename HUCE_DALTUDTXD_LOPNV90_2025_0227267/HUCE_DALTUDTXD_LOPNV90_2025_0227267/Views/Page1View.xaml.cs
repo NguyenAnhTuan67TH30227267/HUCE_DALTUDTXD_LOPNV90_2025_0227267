@@ -20,9 +20,52 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.Views
     /// </summary>
     public partial class Page1View : UserControl
     {
+        private Point _lastPoint;
+        private bool _isDragging = false;
+
         public Page1View()
         {
             InitializeComponent();
+        }
+
+        private void Viewport_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            double zoom = e.Delta > 0 ? 0.1 : -0.1;
+            if (MainScale.ScaleX + zoom > 0.1 && MainScale.ScaleX + zoom < 10)
+            {
+                MainScale.ScaleX += zoom;
+                MainScale.ScaleY += zoom;
+            }
+            e.Handled = true;
+        }
+
+        private void Viewport_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _isDragging = true;
+            _lastPoint = e.GetPosition(this);
+            ViewportCanvas.CaptureMouse();
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void Viewport_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _isDragging = false;
+            ViewportCanvas.ReleaseMouseCapture();
+            Mouse.OverrideCursor = null;
+        }
+
+        private void Viewport_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isDragging)
+            {
+                Point currentPoint = e.GetPosition(this);
+                Vector delta = currentPoint - _lastPoint;
+
+                MainTranslate.X += delta.X;
+                MainTranslate.Y += delta.Y;
+
+                _lastPoint = currentPoint;
+            }
         }
     }
 }

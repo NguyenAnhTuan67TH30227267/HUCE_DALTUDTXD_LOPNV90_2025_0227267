@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -146,7 +147,7 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
             }
             return null;
         }
-
+                              
         // --- Danh sách tên móng từ Page1 ---
         public ObservableCollection<string> FoundationNames
         {
@@ -253,44 +254,34 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
         private void AddConstructionEntry()
         {
-            if (ValidateEntry())
+            if (!ValidateEntry()) return;
+
+            var existing = ConstructionList.FirstOrDefault(x => x.TenMong == NewConstructionEntry.TenMong);
+
+            // Tạo đối tượng mới chứa dữ liệu cập nhật
+            var updatedEntry = new ConstructionEntry
             {
-                var soilLayers = FindSoilLayersByName(NewConstructionEntry.TenMong);
-                var soilLayerAtDepth = FindSoilLayerAtDepth(soilLayers, NewConstructionEntry.ChieuSauChonMong);
+                TenMong = NewConstructionEntry.TenMong,
+                ChieuSauChonMong = NewConstructionEntry.ChieuSauChonMong,
+                ChieuRongMong = NewConstructionEntry.ChieuRongMong,
+                CapDoBeTong = NewConstructionEntry.CapDoBeTong,
+                LoaiThep = NewConstructionEntry.LoaiThep,
+                ChieuDayLopBaoVe = NewConstructionEntry.ChieuDayLopBaoVe,
+                BeDayTuong = NewConstructionEntry.BeDayTuong,
+                ChieuCaoDai = NewConstructionEntry.ChieuCaoDai,
+                SoilLayer = FindSoilLayerAtDepth(FindSoilLayersByName(NewConstructionEntry.TenMong), NewConstructionEntry.ChieuSauChonMong)
+            };
 
-                ConstructionList.Add(new ConstructionEntry
-                {
-                    TenMong = NewConstructionEntry.TenMong,
-                    ChieuSauChonMong = NewConstructionEntry.ChieuSauChonMong,
-                    ChieuRongMong = NewConstructionEntry.ChieuRongMong,
-                    CapDoBeTong = NewConstructionEntry.CapDoBeTong,
-                    LoaiThep = NewConstructionEntry.LoaiThep,
-                    ChieuDayLopBaoVe = NewConstructionEntry.ChieuDayLopBaoVe,
-                    BeDayTuong = NewConstructionEntry.BeDayTuong,
-                    ChieuCaoDai = NewConstructionEntry.ChieuCaoDai,
-                    SoilLayer = soilLayerAtDepth
-                });
-
-                // Lấy các giá trị thiết lập không phải kích thước để gán lại cho Entry mới
-                var capDoBeTong = NewConstructionEntry.CapDoBeTong;
-                var loaiThep = NewConstructionEntry.LoaiThep;
-                var chieuDayBaoVe = NewConstructionEntry.ChieuDayLopBaoVe;
-                var beDayTuong = NewConstructionEntry.BeDayTuong;
-                var chieuCaoDai = NewConstructionEntry.ChieuCaoDai;
-
-                // TẠO MỘT INSTANCE MỚI VÀ GÁN LẠI CÁC GIÁ TRỊ MẶC ĐỊNH
-                NewConstructionEntry = new ConstructionEntry
-                {
-                    CapDoBeTong = capDoBeTong,
-                    LoaiThep = loaiThep,
-                    ChieuDayLopBaoVe = chieuDayBaoVe,
-                    BeDayTuong = beDayTuong,
-
-                    // Gán lại mặc định cho kích thước để hình ảnh vẫn hiển thị
-                    ChieuRongMong = 1.0,
-                    ChieuSauChonMong = 1.0,
-                    ChieuCaoDai = 0.6
-                };
+            if (existing != null)
+            {
+                // Tìm vị trí index của phần tử cũ
+                int index = ConstructionList.IndexOf(existing);
+                // Thay thế phần tử cũ bằng phần tử mới 
+                ConstructionList[index] = updatedEntry;
+            }
+            else
+            {
+                ConstructionList.Add(updatedEntry);
             }
         }
 
@@ -363,9 +354,36 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 
         private void DeleteSelectedConstructionEntry()
         {
-            if (SelectedConstructionEntry != null)
+            if (SelectedConstructionEntry == null) return;
+
+            var result = MessageBox.Show(
+                "Bạn có chắc chắn muốn xóa móng đang chọn không?",
+                "Xác nhận xóa",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
                 ConstructionList.Remove(SelectedConstructionEntry);
+                SelectedConstructionEntry = null;
+
+                //  THÊM NGAY TẠI ĐÂY
+                CommandManager.InvalidateRequerySuggested();
+
+                //  RESET FORM NHẬP
+                NewConstructionEntry = new ConstructionEntry
+                {
+                    CapDoBeTong = DanhSachCapDoBeTong[2],
+                    LoaiThep = DanhSachLoaiThep[2],
+                    ChieuDayLopBaoVe = 25,
+                    BeDayTuong = 0.22,
+                    ChieuCaoDai = 0.6,
+                    ChieuRongMong = 1.0,
+                    ChieuSauChonMong = 1.0
+                };
+            }
         }
+
 
         public ObservableCollection<ConstructionEntry> ConstructionList => _mainViewModel.ConstructionList;
     }
@@ -420,4 +438,9 @@ namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => Binding.DoNothing;
     }
+   
+   
+
+          
+
 }
