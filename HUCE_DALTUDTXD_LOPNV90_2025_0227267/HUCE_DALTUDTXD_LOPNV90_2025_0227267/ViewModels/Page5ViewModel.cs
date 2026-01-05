@@ -3,258 +3,170 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace HUCE_DALTUDTXD_LOPNV90_2025_0227267.ViewModels
 {
     public class Page5ViewModel : ViewModelBase
     {
         private readonly MainViewModel _mainViewModel;
-        private double _chieuRongMong;
-        private double _chieuSauChonMong;
-        private double _ptb;
-        public double _pmax;
-        private double _pmin;
-        private double _p0;
-        private double _p0max;
-        private double _p0min;
-        private double _pDamThung;
-        private double _pChongDamThung;
-        private ForceInputEntry _selectedForceInput;
-        public double ChieuRongMong
+        private ObservableCollection<FootingResult> _calculationResults;
+
+        public ObservableCollection<FootingResult> CalculationResults
         {
-            get => _chieuRongMong;
-            set
-            {
-                if (_chieuRongMong != value)
-                {
-                    _chieuRongMong = value;
-                    OnPropertyChanged(nameof(ChieuRongMong));
-                    CalculateValues();
-                }
-            }
+            get => _calculationResults;
+            set { _calculationResults = value; OnPropertyChanged(nameof(CalculationResults)); }
         }
 
-        public double ChieuSauChonMong
-        {
-            get => _chieuSauChonMong;
-            set
-            {
-                if (_chieuSauChonMong != value)
-                {
-                    _chieuSauChonMong = value;
-                    OnPropertyChanged(nameof(ChieuSauChonMong));
-                    CalculateValues();
-                }
-            }
-        }
-
-        public double Ptb
-        {
-            get => _ptb;
-            set
-            {
-                if (_ptb != value)
-                {
-                    _ptb = value;
-                    OnPropertyChanged(nameof(Ptb));
-                }
-            }
-        }
-
-        public double Pmax
-        {
-            get => _pmax;
-            set
-            {
-                if (_pmax != value)
-                {
-                    _pmax = value;
-                    OnPropertyChanged(nameof(Pmax));
-                }
-            }
-        }
-
-        public double Pmin
-        {
-            get => _pmin;
-            set
-            {
-                if (_pmin != value)
-                {
-                    _pmin = value;
-                    OnPropertyChanged(nameof(Pmin));
-                }
-            }
-        }
-
-        public double P0
-        {
-            get => _p0;
-            set
-            {
-                if (_p0 != value)
-                {
-                    _p0 = value;
-                    OnPropertyChanged(nameof(P0));
-                }
-            }
-        }
-
-        public double P0max
-        {
-            get => _p0max;
-            set
-            {
-                if (_p0max != value)
-                {
-                    _p0max = value;
-                    OnPropertyChanged(nameof(P0max));
-                }
-            }
-        }
-
-        public double P0min
-        {
-            get => _p0min;
-            set
-            {
-                if (_p0min != value)
-                {
-                    _p0min = value;
-                    OnPropertyChanged(nameof(P0min));
-                }
-            }
-        }
-
-        public double PDamThung
-        {
-            get => _pDamThung;
-            set
-            {
-                if (_pDamThung != value)
-                {
-                    _pDamThung = value;
-                    OnPropertyChanged(nameof(PDamThung));
-                }
-            }
-        }
-
-        public double PChongDamThung
-        {
-            get => _pChongDamThung;
-            set
-            {
-                if (_pChongDamThung != value)
-                {
-                    _pChongDamThung = value;
-                    OnPropertyChanged(nameof(PChongDamThung));
-                }
-            }
-        }
-
-        public ForceInputEntry SelectedForceInput
-        {
-            get => _selectedForceInput;
-            set
-            {
-                if (_selectedForceInput != value)
-                {
-                    _selectedForceInput = value;
-                    OnPropertyChanged(nameof(SelectedForceInput));
-                    if (value?.Mong != null)
-                    {
-                        ChieuRongMong = value.Mong.ChieuRongMong;
-                        ChieuSauChonMong = value.Mong.ChieuSauChonMong;
-                    }
-                    CalculateValues();
-                }
-            }
-        }
-
+        // Lấy danh sách đầu vào từ Page 4
         public ObservableCollection<ForceInputEntry> ForceInputList => _mainViewModel.Page4ViewModel.ForceInputList;
 
         public Page5ViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            // Set default values
-            ChieuRongMong = 1.0;
-            ChieuSauChonMong = 1.0;
+            CalculationResults = new ObservableCollection<FootingResult>();
+
+            // Mỗi khi danh sách móng ở Page 4 thay đổi, tự động tính lại bảng này
+            ForceInputList.CollectionChanged += (s, e) => CalculateAll();
+            CalculateAll();
         }
 
-        private void CalculateValues()
+        public void CalculateAll()
         {
-            try
+            CalculationResults.Clear();
+            var soilList = _mainViewModel.Page1ViewModel.FoundationList;
+
+            foreach (var input in ForceInputList)
             {
-                if (SelectedForceInput?.Mong == null || ChieuRongMong <= 0 || ChieuSauChonMong <= 0)
+                if (input.Mong == null || input.Mong.SoilLayer == null) continue;
+
+                // --- 1. Thông số cơ bản ---
+                double N = input.AxialForce;
+                double M = input.Moment;
+                double b = input.Mong.ChieuRongMong;
+                double hm = input.Mong.ChieuSauChonMong;
+                double bt = input.Mong.BeDayTuong;
+                double hd = input.Mong.ChieuCaoDai;
+                double bv = input.Mong.ChieuDayLopBaoVe / 1000.0;
+                double rbt = ConcreteProperties.GetRbtInTM2(input.Mong.CapDoBeTong);
+                double gamma = input.Mong.SoilLayer.Khoiluongtunhien;
+                double E0 = input.Mong.SoilLayer.Modunbiendang;
+                double h_lop_hien_tai = input.Mong.SoilLayer.Chieudaylopdat;
+
+                // --- 2. Tính toán các loại áp lực ---
+                double ptb = Math.Round(N / (1.15 * b) + 2 * hm, 2);
+                double pmax = Math.Round(N / (1.15 * b) + 2 * hm + 6 * M / (1.15 * b * b), 2);
+                double pmin = Math.Round(N / (1.15 * b) + 2 * hm - 6 * M / (1.15 * b * b), 2);
+
+                // Áp lực ròng (P0)
+                double p0max = Math.Round(N / b + 6 * M / (b * b), 2);
+                double p0min = Math.Round(N / b - 6 * M / (b * b), 2);
+                double Pgl = ptb - (gamma * hm);
+
+                // --- 3. Logic chiều dày đất (Xử lý lớp 1 + lớp 2 nếu móng sâu) ---
+                double h_duoi_day = h_lop_hien_tai - hm;
+                if (h_duoi_day < 0)
                 {
-                    ClearValues();
-                    return;
+                    int currentIndex = soilList.IndexOf(input.Mong.SoilLayer);
+                    if (currentIndex >= 0 && currentIndex < soilList.Count - 1)
+                    {
+                        double h_lop_ke_tiep = soilList[currentIndex + 1].Chieudaylopdat;
+                        h_duoi_day = (h_lop_hien_tai + h_lop_ke_tiep) - hm;
+                    }
+                }
+                double h_final = Math.Max(0, h_duoi_day);
+
+                // --- 4. Tính độ lún S (Nội suy w) ---
+                double tiSo = (b >= 1) ? b : (1 / b);
+                double w = GetWInterpolated(tiSo);
+                double Bqu = b + 2 * h_final * Math.Tan(30 * Math.PI / 180);
+
+                double doLunS = 0;
+                if (E0 > 0)
+                {
+                    double quy = 0.25;
+                    double s_met = (Pgl * Bqu * w * (1 - Math.Pow(quy, 2))) / E0;
+                    doLunS = Math.Round(s_met, 2); // cm
                 }
 
-                // Các tính toán (giữ nguyên phần còn lại)
-                double N = SelectedForceInput.AxialForce;
-                double M = SelectedForceInput.Moment;
-                double b = ChieuRongMong;
-                double h = ChieuSauChonMong;
-                double bt = SelectedForceInput.Mong.BeDayTuong;
-                double hd = SelectedForceInput.Mong.ChieuCaoDai;
-                double bv = SelectedForceInput.Mong.ChieuDayLopBaoVe / 1000.0;
-
-                double rbt = ConcreteProperties.GetRbtInTM2(SelectedForceInput.Mong.CapDoBeTong);
-
-                Ptb = N / (1.15 * b) + 2 * h;
-                Pmax = N / (1.15 * b) + 2 * h + 6 * M / (1.15 * b * b);
-                Pmin = N / (1.15 * b) + 2 * h - 6 * M / (1.15 * b * b);
-
-                P0 = N / (b);
-                P0max = N / (b) + 6 * M / (b * b);
-                P0min = N / (b) - 6 * M / (b * b);
-
+                // --- 5. Kiểm tra chọc thủng ---
                 double bHieuDung = b - bt - 2 * (hd - bv);
-                PDamThung = (P0min + (P0max - P0min) * (b - 0.5 * bHieuDung) / b + P0max) / 2 * (0.5 * bHieuDung);
-                PChongDamThung = (hd - bv) * rbt;
+                double pDamThung = Math.Round((p0min + (p0max - p0min) * (b - 0.5 * bHieuDung) / b + p0max) / 2 * (0.5 * bHieuDung), 2);
+                double pChongDamThung = Math.Round((hd - bv) * rbt, 2);
 
-                Ptb = Math.Round(Ptb, 2);
-                Pmax = Math.Round(Pmax, 2);
-                Pmin = Math.Round(Pmin, 2);
-                P0 = Math.Round(P0, 2);
-                P0max = Math.Round(P0max, 2);
-                P0min = Math.Round(P0min, 2);
-                PDamThung = Math.Round(PDamThung, 2);
-                PChongDamThung = Math.Round(PChongDamThung, 2);
+                // --- 6. Ghi chú trạng thái ---
+                bool isOk = pmin >= 0 && pDamThung <= pChongDamThung && doLunS <= 8.0;
+                string status = isOk ? "Thỏa mãn" : (doLunS > 8.0 ? "Lún lớn!" : (pmin < 0 ? "Pmin < 0" : "Check!"));
 
-                if (Pmin < 0)
+                // --- 7. Xuất kết quả ra bảng (Đầy đủ P0min) ---
+                CalculationResults.Add(new FootingResult
                 {
-                    MessageBox.Show("Cảnh báo: Pmin < 0, có thể xảy ra hiện tượng nhổ móng!",
-                        "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-
-                if (PDamThung > PChongDamThung)
-                {
-                    MessageBox.Show("Cảnh báo: PDamThung > PChongDamThung, có thể xảy ra hiện tượng đâm thủng!",
-                        "Cảnh báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                ClearValues();
-                MessageBox.Show($"Lỗi khi tính toán: {ex.Message}",
-                    "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    TenMong = input.Mong.TenMong,
+                    Ptb = ptb,
+                    Pmax = pmax,
+                    Pmin = pmin,
+                    P0max = p0max,
+                    P0min = p0min, // Gán giá trị hiển thị ra bảng ở đây
+                    PDamThung = pDamThung,
+                    PChongDamThung = pChongDamThung,
+                    DoLun = doLunS,
+                    GhiChu = status
+                });
             }
         }
 
-        private void ClearValues()
+        /// <summary>
+        /// Hàm nội suy hệ số w dựa trên tỷ số r
+        /// </summary>
+        private double GetWInterpolated(double r)
         {
-            Ptb = 0;
-            Pmax = 0;
-            Pmin = 0;
-            P0 = 0;
-            P0max = 0;
-            P0min = 0;
-            PDamThung = 0;
-            PChongDamThung = 0;
+            // Bảng dữ liệu bạn cung cấp
+            double[] rValues = { 1, 1.5, 2, 3, 4, 5, 6, 7, 10 };
+            double[] wValues = { 0.88, 1.08, 1.22, 1.44, 1.61, 1.72, 1.83, 1.91, 2.12 };
+
+            // Nếu nhỏ hơn giá trị đầu tiên
+            if (r <= rValues[0]) return wValues[0];
+            // Nếu lớn hơn giá trị cuối cùng
+            if (r >= rValues[rValues.Length - 1]) return wValues[wValues.Length - 1];
+
+            // Tìm khoảng để nội suy
+            for (int i = 0; i < rValues.Length - 1; i++)
+            {
+                if (r >= rValues[i] && r <= rValues[i + 1])
+                {
+                    // Công thức nội suy tuyến tính: y = y0 + (r - r0) * (y1 - y0) / (r1 - r0)
+                    return wValues[i] + (r - rValues[i]) * (wValues[i + 1] - wValues[i]) / (rValues[i + 1] - rValues[i]);
+                }
+            }
+
+            return 0.88; // Mặc định phòng ngừa
+        }
+    }
+    public class StatusToColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string status = value as string;
+            if (string.IsNullOrEmpty(status)) return Brushes.Black;
+
+            // Nếu ghi chú chứa chữ "Đạt" hoặc "Thỏa mãn" -> Màu xanh
+            if (status.Contains("Đạt") || status.Contains("Thỏa mãn") || status.Contains("TỐI ƯU"))
+                return Brushes.Green;
+
+            // Nếu ghi chú chứa chữ "Không" hoặc "Lãng phí" -> Màu đỏ
+            if (status.Contains("Không") || status.Contains("Lãng phí"))
+                return Brushes.Red;
+
+            return Brushes.Orange; // Mặc định (ví dụ: "Chưa tối ưu")
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

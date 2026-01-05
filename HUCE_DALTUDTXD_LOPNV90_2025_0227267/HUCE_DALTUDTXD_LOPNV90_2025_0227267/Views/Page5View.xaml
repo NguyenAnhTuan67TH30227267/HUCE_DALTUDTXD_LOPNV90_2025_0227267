@@ -163,7 +163,7 @@
                             FontWeight="Bold"
                             Foreground="#62E8E2"
                             Width="*"/>
-                            <DataGridTemplateColumn Header="Ghi chú" Width="100">
+                            <!--<DataGridTemplateColumn Header="Ghi chú" Width="100">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding GhiChu}" 
@@ -172,7 +172,7 @@
                                        Foreground="{Binding GhiChu, Converter={StaticResource StatusToColorConverter}}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            </DataGridTemplateColumn>-->
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

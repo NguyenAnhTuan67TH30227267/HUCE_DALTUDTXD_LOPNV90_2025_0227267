@@ -61,6 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\ConcreteProperties.cs" />
     <Compile Include="Models\ConstructionEntry.cs" />
+    <Compile Include="Models\FootingResult.cs" />
     <Compile Include="Models\ForceInputEntry.cs" />
     <Compile Include="Models\FoundationEntry.cs" />
     <Compile Include="Models\GeologicalAxis.cs" />
